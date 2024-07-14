@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: automatic-okr
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017"
+      name: "automatic-okr"
+server.port: 8282
+jira:
+  url: "https://barakyedaya.atlassian.net"
+  username: "barak.yedaya@gmail.com"
+  apiToken: "ATATT3xFfGF0JrcoSkXJuFmMVYEHEgSka0R5-Mr9TxoV9zJPj6B6iu_ZSkFp2-GCkTueO6ch2j87NVpjlZfG-iwXTDrsTvF-pvM6rAmR9cD6-BJWFY-9AnZQIHQFdou3I6rCrxj2m639iMb4bVHPaqtX2lAdlsbwov10X-bM7RpGSS6s2mprcNk=3C947056"
+  project-uri: "/rest/api/2/project/"
+  role-uri: "/rest/api/2/project/{ID}/role"
+openai:
+  url: "https://api.openai.com//v1/chat/completions"
+  token: "Bearer sk-proj-vkc2atOdJQQAwS9BGsYtT3BlbkFJxxqjtiqSPbJ8zpuohtLi"
+  gpt-3.5-turbo-0125: "gpt-3.5-turbo-0125"
+  gpt-4: "gpt-4"
+  system-content-get-okr: "When I am sending you an objective, you will reply with a list of key results that are corresponding to that objective.\""
+  system-content-nested-organization-with-okrs: "when I give you a hierarchical JSON structure of a company and an objective for that company, you will reply with the same JSON structure while filling in the \"okrs\" field structure in each level. \nthe \"okrs\" field structure is the following:\n\n\"okrs\": [\n\t\t\t\t{\n\t\t\t\t\t\"objective\": null,\n\t\t\t\t\t\"derivedFromKeyResultId\": null,\n\t\t\t\t\t\"keyResults\": [\n\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\"keyResult\": null,\n\t\t\t\t\t\t\t\"keyResultId\": null\n\t\t\t\t\t\t}\n\t\t\t\t\t]\n\t\t\t\t}\n\t\t]\n\nalthough this structure has only one \"keyResult\" in the \"keyResults\" list, you can have multiple \"keyResult\" if you see the need. for the lower levels, although this structure has only one \"objective\" in it, you can have multiple objectives if you see the need. the \"objective\" of the highest level is the only field that shouldn't be deleted. you will do that in the following way:\n1. \"objective\": the objective of each level which is derived from a higher level key result.\n2. \"derivedFromKeyResultId\": the higher level key result ID this objective is derived from\n3. \"keyResults\": the key results that are corresponding to that objective\n4. \"keyResult\": a key result that is corresponding to that objective\n5. \"keyResultId\": the ID of the key result"
