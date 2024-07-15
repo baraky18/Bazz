@@ -9,12 +9,12 @@ server.port: 8282
 jira:
   url: "https://barakyedaya.atlassian.net"
   username: "barak.yedaya@gmail.com"
-  apiToken: "ATATT3xFfGF0JrcoSkXJuFmMVYEHEgSka0R5-Mr9TxoV9zJPj6B6iu_ZSkFp2-GCkTueO6ch2j87NVpjlZfG-iwXTDrsTvF-pvM6rAmR9cD6-BJWFY-9AnZQIHQFdou3I6rCrxj2m639iMb4bVHPaqtX2lAdlsbwov10X-bM7RpGSS6s2mprcNk=3C947056"
   project-uri: "/rest/api/2/project/"
+  apiToken: ${{ secrets.JIRA_API_TOKEN }}
   role-uri: "/rest/api/2/project/{ID}/role"
 openai:
   url: "https://api.openai.com//v1/chat/completions"
-  token: "Bearer sk-proj-vkc2atOdJQQAwS9BGsYtT3BlbkFJxxqjtiqSPbJ8zpuohtLi"
+  token: ${{ secrets.OPENAI_TOKEN }}
   gpt-3.5-turbo-0125: "gpt-3.5-turbo-0125"
   gpt-4: "gpt-4"
   system-content-get-okr: "When I am sending you an objective, you will reply with a list of key results that are corresponding to that objective.\""
